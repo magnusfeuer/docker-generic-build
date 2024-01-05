@@ -1,4 +1,4 @@
-# Docker build for reliable multicast
+# Docker build for reliable multicast (RMC)
 This repo creates a docker image and has tools to build [Reliable Multicast](https://github.com/magnusfeuer/reliable_multicast)
 
 The docker image is checked in as a [docker repo](https://hub.docker.com/repository/docker/magnusfeuer/reliable-multicast-build/general)

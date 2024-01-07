@@ -11,5 +11,5 @@ elif [ $1 = "build" ]; then
     echo "Building Reliable Multicast"
     make
     mkdir -p out
-    DESTDIR=./out make install 
+    DESTDIR=./out make $2
 fi

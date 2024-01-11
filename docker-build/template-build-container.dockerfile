@@ -1,4 +1,4 @@
-# Dockerfile for Reliable Multicast Build system
+# Dockerfile for a generic build container
 # Thanks to Ravi Chandran: https://opensource.com/article/20/4/how-containerize-build-system
 
 FROM ubuntu:22.04
@@ -26,6 +26,9 @@ RUN apt-get update \
     && apt-get clean autoclean \
     && rm -fr /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/* 
 
+#
+# Install the FPM package manager to create debian and other packages
+#
 RUN gem install fpm
 
 # Run container as non-root user from here onwards
@@ -37,4 +40,4 @@ VOLUME /scripts
 VOLUME /src
 
 # run bash script and process the input command
-ENTRYPOINT [ "/bin/bash", "/scripts/build_rmc.sh"]
+ENTRYPOINT [ "/bin/bash", "/scripts/build.sh"]

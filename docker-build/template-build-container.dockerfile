@@ -19,17 +19,10 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get -y --quiet --no-install-recommends install \
        build-essential \
-       git \
-       ruby-rubygems \
        squashfs-tools \
     && apt-get -y autoremove \
     && apt-get clean autoclean \
     && rm -fr /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/* 
-
-#
-# Install the FPM package manager to create debian and other packages
-#
-RUN gem install fpm
 
 # Run container as non-root user from here onwards
 # so that build output files have the correct owner

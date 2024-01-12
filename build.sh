@@ -16,7 +16,7 @@ fi
 #
 DOCKER_IMAGE=${1}
 shift
-SOURCE_DIR=${1}
+SOURCE_DIR=$(realpath ${1})
 shift
 
 #
@@ -36,9 +36,9 @@ fi
 # Run the docker container with any given commands
 # and any arguments provided after the command.
 #
-docker container run                            \
-    --volume ${PWD}/docker-build/scripts:/scripts    \
-    --volume ${SOURCE_DIR}:/src                      \
-    --user $(id -u ${USER}):$(id -g ${USER})         \
-    --rm -it --name ${DOCKER_IMAGE} ${DOCKER_IMAGE}:v1               \
+docker container run \
+    --volume $(realpath $(dirname ${0}))/docker-build/scripts:/scripts \
+    --volume ${SOURCE_DIR}:/src \
+    --user $(id -u ${USER}):$(id -g ${USER}) \
+    --rm -it --name ${DOCKER_IMAGE} ${DOCKER_IMAGE}:v1 \
     ${COMMAND} $*
